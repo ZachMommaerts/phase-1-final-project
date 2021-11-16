@@ -10,12 +10,14 @@ const bookReview = document.querySelector('#review')
 const likeButton = document.querySelector('#like-button')
 
 //Fetch request to server to get data regarding random book
-fetch('')
+fetch('https://openlibrary.org/works/OL45883W.json')
 .then(res => res.json())
 .then(book => renderBook(book))
 .catch(error => alert(error))
 
 //Function that renders book on the page
 function renderBook(book) {
-
+    bookTitle.textContent = book.title;
+    bookCover.src = book.covers[0];
+    bookAuthor.textContent = book.authors[0];
 }
