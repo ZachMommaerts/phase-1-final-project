@@ -4,7 +4,6 @@ body {
     background-color: beige;
 }
 header {
-
     right: 100px ;
     width: 450px;
     height: auto;
@@ -12,7 +11,7 @@ header {
     border-left: solid black 2px;
     border-top: solid black 1px;
     border-bottom: solid black 1px;
-    border-radius: 6px 6px 6px 6px;
+    border-radius: 0px 0px 0px 0px;
     font-size: 3rem;
 }
 
@@ -21,4 +20,7 @@ img {
     border-right: solid black 1px;
     border-top: solid black 1px;
     border-bottom: solid black 1px; 
+}
+
+h5 {
 }
