@@ -40,3 +40,15 @@ function renderCover(cover) {
     bookCover.src = 
 }
 
+likeButton.addEventListener("click", (e) =>{
+
+})
+
+bookReviewForm.addEventListener("submit", (e) =>{
+    e.preventDefault();
+    let bookReview = document.querySelector("#review").value;
+    let li =document.createElement("li");
+    li.textContent = bookReview;
+    bookReviewForm.appendChild(li);
+    e.target.reset()
+})
