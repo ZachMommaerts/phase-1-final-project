@@ -9,7 +9,7 @@
     <script src='index.js' defer></script>
 </head>
 <body>
-    <header App Title></header>
+    <header App Title>App Title</header>
     <main>
         <div class="book-details">
             <h1 id="book-title">Book title goes here</h1>
@@ -21,7 +21,12 @@
             <p id="book-review-title">Leave a review</p>
             <ul id="book-review">
                 <li>Book Review Goes Here</li>
-            </ul>  
+            </ul> 
+            <form id="review-form">
+                <label for="review">Leave a Review!</label>
+                <textarea id="review"></textarea>
+                <button type="submit">Add Your Review</button>
+            </form>
             <button id="like-button" class="like-button">♥</button>
             
         </div>
