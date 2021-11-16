@@ -18,6 +18,7 @@ fetch('https://openlibrary.org/works/OL45883W.json')
 //Function that renders book on the page
 function renderBook(book) {
     bookTitle.textContent = book.title;
-    bookCover.src = book.covers[0];
-    bookAuthor.textContent = book.authors[0];
+    bookCover.src = book.covers;
+    console.log(book.authors);
 }
+
