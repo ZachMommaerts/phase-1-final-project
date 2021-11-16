@@ -3,3 +3,20 @@ body {
     text-align: center;
     background-color: beige;
 }
+header {
+    width: 450px;
+    height: auto;
+    border-right: solid black 2px;
+    border-left: solid black 2px;
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
+    border-radius: 0 0 6px 0;
+    font-size: 3rem;
+}
+
+img {
+    border-left: solid black 1px;
+    border-right: solid black 1px;
+    border-top: solid black 1px;
+    border-bottom: solid black 1px; 
+}
