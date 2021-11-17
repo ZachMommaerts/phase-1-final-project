@@ -21,20 +21,26 @@ const googleKey = config.GoogleAPIKey;
 fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
 .then(res => res.json())
 .then(book => {
-    renderBook(book.items[0]);
+    renderBook(book.items[1]);
     console.log(book.items)
 })
 .catch(error => alert(error))
 
 //Function for rendering book on website
 function renderBook(book) {
-    
-    // these might have to be .items?
     bookTitle.textContent = book.volumeInfo.title;
     bookAuthor.textContent = book.volumeInfo.authors[0];
     bookPublisher.textContent = book.volumeInfo.publisher;
     bookPublishingDate.textContent = book.volumeInfo.publishedDate;
-    bookISBN.textContent = book.volumeInfo.industryIdentifiers[1].identifier;
+    if(book.volumeInfo.industryIdentifiers){
+        if (book.volumeInfo.industryIdentifiers[0] === 'ISBN_13'){
+            bookISBN.textContent = book.volumeInfo.industryIdentifiers[0].identifier;
+        } else {
+            bookISBN.textContent = book.volumeInfo.industryIdentifiers[1].identifier;
+        }
+    } else {
+        bookISBN.innerHTML = '';
+    }
     bookCover.src = book.volumeInfo.imageLinks.thumbnail;
     bookSubtitle.textContent = book.volumeInfo.subtitle;
     bookDescription.textContent = book.volumeInfo.description;
