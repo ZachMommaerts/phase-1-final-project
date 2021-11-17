@@ -52,7 +52,6 @@ function renderBook(book) {
 
 likeButton.addEventListener("click", (e) =>{
     e.classList.toggle(likeButton)
-    console.log()
 })
 
 bookReviewForm.addEventListener("submit", (e) =>{
