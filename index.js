@@ -9,7 +9,11 @@ const bookReviewForm = document.querySelector('#review-form');
 const bookReview = document.querySelector('#review');
 const likeButton = document.querySelector('#like-button');
 const bookContainer = document.querySelector('.book-details');
-const bookReviewList = document.querySelector("#book-review")
+const bookReviewList = document.querySelector("#book-review");
+
+// // new keys to formattted into the html 
+// const bookSubtitle = document.querySelector();
+// const bookDescription = document.querySelector();
 
 //Gets API key from hidden JS file
 const googleKey = config.GoogleAPIKey;
@@ -22,11 +26,30 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=search-terms&${googleKey}`)
 
 //Function for rendering book on website
 function renderBook(book) {
+    // these might have to be .items?
+    bookTitle.textContent = book.bookTitle
+
+    bookAuthor.textContent = book.authors
+
+    bookPublisher.textContent = book.Publisher
+
+    bookPublishingDate.textContent = book.publishedDate
+    
+    bookISBN.textContent = book.identifier
+
+    bookCover.src = book.thumbnail
+
+    bookSubtitle.textContent = book.subtitle
+
+    boookDescription.textContent = book.description
+
+    
 
 }
 
 likeButton.addEventListener("click", (e) =>{
     e.classList.toggle(likeButton)
+    console.log()
 })
 
 bookReviewForm.addEventListener("submit", (e) =>{
