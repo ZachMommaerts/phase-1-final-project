@@ -43,13 +43,14 @@ function renderBook(book) {
 
     bookDescription.textContent = book.description
 
+    bookCategories.textContent = book.categories
+
 
 
 }
 
 likeButton.addEventListener("click", (e) =>{
     e.classList.toggle(likeButton)
-    console.log()
 })
 
 bookReviewForm.addEventListener("submit", (e) =>{
