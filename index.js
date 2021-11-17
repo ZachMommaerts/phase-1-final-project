@@ -10,10 +10,10 @@ const bookReview = document.querySelector('#review');
 const likeButton = document.querySelector('#like-button');
 const bookContainer = document.querySelector('.book-details');
 const bookReviewList = document.querySelector("#book-review");
-
-
+// new variables
 const bookSubtitle = document.querySelector("book-subtitle");
 const bookDescription = document.querySelector("book-description");
+const bookCategories = document.querySelector("book-categories")
 
 //Gets API key from hidden JS file
 const googleKey = config.GoogleAPIKey;
