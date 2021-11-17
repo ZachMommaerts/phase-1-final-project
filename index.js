@@ -10,7 +10,6 @@ const bookReview = document.querySelector('#review');
 const likeButton = document.querySelector('#like-button');
 const bookContainer = document.querySelector('.book-details');
 const bookReviewList = document.querySelector("#book-review");
-// new variables
 const bookSubtitle = document.querySelector("#book-subtitle");
 const bookDescription = document.querySelector("#book-description");
 const bookCategories = document.querySelector("#book-categories")
@@ -23,7 +22,7 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
 .then(res => res.json())
 .then(book => {
     renderBook(book.items[0]);
-    console.log(book.items[0])
+    console.log(book.items)
 })
 .catch(error => alert(error))
 
@@ -31,22 +30,14 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
 function renderBook(book) {
     // these might have to be .items?
     bookTitle.textContent = book.volumeInfo.title;
-
-    bookAuthor.textContent = book.volumeInfo.authors[0]
-
-    bookPublisher.textContent = book.volumeInfo.publisher
-
-    bookPublishingDate.textContent = book.volumeInfo.publishedDate
-    
+    bookAuthor.textContent = book.volumeInfo.authors[0];
+    bookPublisher.textContent = book.volumeInfo.publisher;
+    bookPublishingDate.textContent = book.volumeInfo.publishedDate;
     bookISBN.textContent = book.volumeInfo.industryIdentifiers[1].identifier;
-
-    bookCover.src = book.volumeInfo.imageLinks.thumbnail
-
-    bookSubtitle.textContent = book.volumeInfo.subtitle
-
-    bookDescription.textContent = book.volumeInfo.description
-
-    bookCategories.textContent = book.volumeInfo.categories[0]
+    bookCover.src = book.volumeInfo.imageLinks.thumbnail;
+    bookSubtitle.textContent = book.volumeInfo.subtitle;
+    bookDescription.textContent = book.volumeInfo.description;
+    bookCategories.textContent = book.volumeInfo.categories[0];
 
 }
 
