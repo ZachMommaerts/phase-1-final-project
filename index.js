@@ -12,7 +12,9 @@ const bookContainer = document.querySelector('.book-details');
 const bookReviewList = document.querySelector("#book-review");
 const bookSubtitle = document.querySelector("#book-subtitle");
 const bookDescription = document.querySelector("#book-description");
-const bookCategories = document.querySelector("#book-categories")
+const bookCategories = document.querySelector("#book-categories");
+const searchForm = document.querySelector('#search-form');
+const searchInput = document.querySelector('#search');
 
 //Gets API key from hidden JS file
 const googleKey = config.GoogleAPIKey;
@@ -21,7 +23,7 @@ const googleKey = config.GoogleAPIKey;
 fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
 .then(res => res.json())
 .then(book => {
-    renderBook(book.items[1]);
+    renderBook(book.items[7]);
     console.log(book.items)
 })
 .catch(error => alert(error))
@@ -29,7 +31,7 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
 //Function for rendering book on website
 function renderBook(book) {
     bookTitle.textContent = book.volumeInfo.title;
-    bookAuthor.textContent = book.volumeInfo.authors[0];
+    bookAuthor.textContent = book.volumeInfo.authors;
     bookPublisher.textContent = book.volumeInfo.publisher;
     bookPublishingDate.textContent = book.volumeInfo.publishedDate;
     if(book.volumeInfo.industryIdentifiers){
@@ -48,16 +50,20 @@ function renderBook(book) {
 
 }
 
+//Event Listener that will query GoogleBooks API and retrieve queried data
+searchForm.addEventListener('submit', )
+
+
 likeButton.addEventListener("click", (e) =>{
     e.classList.toggle(likeButton)
 })
 
 bookReviewForm.addEventListener("submit", (e) =>{
     e.preventDefault();
-    let bookReview = document.querySelector("#review").value;
+    let userBookReview = bookReview.value;
     let li = document.createElement("li");
     li.className = "input-review"
-    li.textContent = bookReview
+    li.textContent = userBookReview
     bookReviewList.appendChild(li)
     e.target.reset()
 })
