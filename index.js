@@ -11,42 +11,43 @@ const likeButton = document.querySelector('#like-button');
 const bookContainer = document.querySelector('.book-details');
 const bookReviewList = document.querySelector("#book-review");
 // new variables
-const bookSubtitle = document.querySelector("book-subtitle");
-const bookDescription = document.querySelector("book-description");
-const bookCategories = document.querySelector("book-categories")
+const bookSubtitle = document.querySelector("#book-subtitle");
+const bookDescription = document.querySelector("#book-description");
+const bookCategories = document.querySelector("#book-categories")
 
 //Gets API key from hidden JS file
 const googleKey = config.GoogleAPIKey;
 
 //Fetch request to API to get data regarding random book
-fetch(`https://www.googleapis.com/books/v1/volumes?q=search-terms&${googleKey}`)
+fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
 .then(res => res.json())
-.then(book => console.log(book))
+.then(book => {
+    renderBook(book.items[0]);
+    console.log(book.items[0])
+})
 .catch(error => alert(error))
 
 //Function for rendering book on website
 function renderBook(book) {
     
     // these might have to be .items?
-    bookTitle.textContent = book.bookTitle
+    bookTitle.textContent = book.volumeInfo.title;
 
-    bookAuthor.textContent = book.authors
+    bookAuthor.textContent = book.volumeInfo.authors[0]
 
-    bookPublisher.textContent = book.Publisher
+    bookPublisher.textContent = book.volumeInfo.publisher
 
-    bookPublishingDate.textContent = book.publishedDate
+    bookPublishingDate.textContent = book.volumeInfo.publishedDate
     
-    bookISBN.textContent = book.identifier
+    bookISBN.textContent = book.volumeInfo.industryIdentifiers[1].identifier;
 
-    bookCover.src = book.thumbnail
+    bookCover.src = book.volumeInfo.imageLinks.thumbnail
 
-    bookSubtitle.textContent = book.subtitle
+    bookSubtitle.textContent = book.volumeInfo.subtitle
 
-    bookDescription.textContent = book.description
+    bookDescription.textContent = book.volumeInfo.description
 
-    bookCategories.textContent = book.categories
-
-
+    bookCategories.textContent = book.volumeInfo.categories[0]
 
 }
 
