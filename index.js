@@ -20,18 +20,7 @@ const searchInput = document.querySelector('#search');
 const googleKey = config.GoogleAPIKey;
 
 //Function for rendering book on website
-function renderBook(e) {
-    e.preventDefault();
-    const searchInputValue = searchInput.value;
-    //Fetch request to API to get data regarding random book
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
-    .then(res => res.json())
-    .then(book => {
-        renderBook(book.items[7]);
-        console.log(book.items)
-    })
-    .catch(error => alert(error))
-
+function renderBook() {
     bookTitle.textContent = book.volumeInfo.title;
     bookAuthor.textContent = book.volumeInfo.authors;
     bookPublisher.textContent = book.volumeInfo.publisher;
@@ -50,11 +39,24 @@ function renderBook(e) {
     bookDescription.textContent = book.volumeInfo.description;
     bookCategories.textContent = book.volumeInfo.categories[0];
 
-    searchForm.reset();
+
+}
+
+function getBooksFromAPI (e) {
+    e.preventDefault();
+    const searchInputValue = searchInput.value;
+    //Fetch request to API to get data regarding random book
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
+    .then(res => res.json())
+    .then(book => {
+        renderBook(book.items[7]);
+        console.log(book.items)
+    })
+    .catch(error => alert(error))
 }
 
 //Event Listener that will query GoogleBooks API and retrieve queried data
-searchForm.addEventListener('submit', e => renderBook(e))
+searchForm.addEventListener('submit', e => getBooksFromAPI(e))
 
 
 
