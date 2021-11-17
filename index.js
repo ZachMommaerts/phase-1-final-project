@@ -26,6 +26,7 @@ fetch(`https://www.googleapis.com/books/v1/volumes?q=search-terms&${googleKey}`)
 
 //Function for rendering book on website
 function renderBook(book) {
+    
     // these might have to be .items?
     bookTitle.textContent = book.bookTitle
 
