@@ -39,20 +39,22 @@ function renderBook() {
     bookDescription.textContent = book.volumeInfo.description;
     bookCategories.textContent = book.volumeInfo.categories[0];
 
-
 }
 
 function getBooksFromAPI (e) {
     e.preventDefault();
-    const searchInputValue = searchInput.value;
+    const searchInputValue = searchInput.value.replace(' ', '+');
+    debugger;
     //Fetch request to API to get data regarding random book
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms&${googleKey}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}&${googleKey}`)
     .then(res => res.json())
     .then(book => {
-        renderBook(book.items[7]);
+        // renderBook(book.items[0]);
         console.log(book.items)
     })
     .catch(error => alert(error))
+
+    e.target.reset();
 }
 
 //Event Listener that will query GoogleBooks API and retrieve queried data
