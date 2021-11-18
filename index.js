@@ -50,6 +50,7 @@ function getBooksFromAPI (e) {
     .then(res => res.json())
     .then(books => {
         renderBook(books.items[0]);
+        bookListContainer.innerHTML = '';
         books.items.forEach(renderRelatedBook);
         console.log(books.items)
     })
