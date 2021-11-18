@@ -15,6 +15,7 @@ const bookDescription = document.querySelector("#book-description");
 const bookCategories = document.querySelector("#book-categories");
 const searchForm = document.querySelector('#search-form');
 const searchInput = document.querySelector('#search');
+const bookListContainer = document.querySelector('#book-container')
 
 //Gets API key from hidden JS file
 const googleKey = config.GoogleAPIKey;
@@ -49,8 +50,8 @@ function getBooksFromAPI (e) {
     .then(res => res.json())
     .then(books => {
         renderBook(books.items[0]);
+        books.items.forEach(renderRelatedBook);
         console.log(books.items)
-        debugger;
     })
     .catch(error => alert(error))
 
@@ -65,11 +66,17 @@ function renderRelatedBook (book) {
     const bookListImage = createEl('img');
     const bookListTitle = createEl('h2');
     const bookListAuthor = createEl('h3');
+    const bookListDescription = createEl('h3');
 
     bookListDiv.id = book.volumeInfo.industryIdentifiers[0];
     bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
-    bookListTitle = book.volumeInfo.title;
-    bookListAuthor = book.volumeInfo.authors;
+    bookListTitle.textContent = book.volumeInfo.title;
+    bookListAuthor.textContent = book.volumeInfo.authors;
+    bookListDescription.textContent = book.volumeInfo.description;
+    bookListDescription.style.visibility = 'hidden';
+    bookListDescription.style.display = 'none';
+
+    bookListContainer.appendChild(bookListDiv);
 }
 
 function createEl (tag) {
