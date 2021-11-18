@@ -62,9 +62,9 @@ function renderRelatedBook (book) {
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
 
-    bookListCategories.textContent = book.volumeInfo.categories[0];
-    bookListCategories.style.visibility = 'hidden';
-    bookListCategories.style.display = 'none';
+    // bookListCategories.textContent = book.volumeInfo.categories[0];
+    // bookListCategories.style.visibility = 'hidden';
+    // bookListCategories.style.display = 'none';
 
     bookListSubtitle.textContent = book.volumeInfo.subtitle;
     bookListSubtitle.style.visibility = 'hidden';
@@ -89,9 +89,9 @@ function getBookDetails(e) {
         bookTitle.textContent = target.children[1].textContent;
         bookAuthor.textContent = target.children[2].textContent;
         bookCover.src = target.children[0].src;
-        // bookSubtitle.textContent = book.children[4].textContent;
-        // bookDescription.textContent = target.children[3].textContent;
-        // bookCategories.textContent = book.children[5].textContent;
+        bookSubtitle.textContent = book.children[4].textContent;
+        bookDescription.textContent = target.children[3].textContent;
+        bookCategories.textContent = book.children[5].textContent;
     }
 }
 //Event Listener for putting list book into details
@@ -104,6 +104,7 @@ function createEl (tag) {
 
 
 bookReviewForm.addEventListener("submit", (e) =>{
+    
     e.preventDefault();
     let userBookReview = bookReview.value;
     let li = document.createElement("li");
