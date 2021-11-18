@@ -70,6 +70,7 @@ function renderRelatedBook (book) {
     const bookListAuthor = createEl('h3');
     const bookListDescription = createEl('h3');
 
+    bookListDiv.className = 'book-list'
     bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
@@ -85,6 +86,32 @@ function renderRelatedBook (book) {
     }
 }
 
+
+// <h1 id="book-title">Book title goes here</h1>
+// <img id="book-cover" alt="Book Cover Goes Here" src="">
+// <h2 id="book-subtitle"> subtitle goes here</h2>
+// <h3 id="book-author">Book author goes here</h3>
+// <h4 id="book-description">Book description goes here</h4>
+// <h5 id="book-categories">category/genre goes here</h5>
+// <p id="book-review-title">Leave a review</p>
+// <ul id="book-review">
+// </ul> 
+// <form id="review-form">
+//     <label for="review"></label>
+//     <textarea id="review"></textarea>
+//     <button type="submit">Add Your Review!</button>
+
+//Function that shows the details of a book in a special window
+function getBookDetails(e) {
+    const target = e.target;
+    if(target && target.className === 'book-list') {
+        
+    }
+}
+//Event Listener for putting list book into details
+bookListContainer.addEventListener('click', e => getBookDetails(e));
+
+//Function for creating elements
 function createEl (tag) {
     return document.createElement(tag);
 }
