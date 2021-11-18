@@ -44,12 +44,12 @@ function renderBook(book) {
 function getBooksFromAPI (e) {
     e.preventDefault();
     const searchInputValue = searchInput.value.replace(' ', '+'); 
-    //Fetch request to API to get data regarding random book
+    //Fetch request to API to get data regarding searched book
     fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}&${googleKey}`)
     .then(res => res.json())
-    .then(book => {
-        renderBook(book.items[0]);
-        console.log(book.items)
+    .then(books => {
+        renderBook(books.items[0]);
+        console.log(books.items)
         debugger;
     })
     .catch(error => alert(error))
@@ -60,7 +60,21 @@ function getBooksFromAPI (e) {
 //Event Listener that will query GoogleBooks API and retrieve queried data
 searchForm.addEventListener('submit', e => getBooksFromAPI(e))
 
+function renderRelatedBook (book) {
+    const bookListDiv = createEl('div');
+    const bookListImage = createEl('img');
+    const bookListTitle = createEl('h2');
+    const bookListAuthor = createEl('h3');
 
+    bookListDiv.id = book.volumeInfo.industryIdentifiers[0];
+    bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
+    bookListTitle = book.volumeInfo.title;
+    bookListAuthor = book.volumeInfo.authors;
+}
+
+function createEl (tag) {
+    return document.createElement(tag);
+}
 
 likeButton.addEventListener("click", (e) =>{
     e.classList.toggle(likeButton)
