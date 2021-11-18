@@ -20,7 +20,7 @@ const searchInput = document.querySelector('#search');
 const googleKey = config.GoogleAPIKey;
 
 //Function for rendering book on website
-function renderBook() {
+function renderBook(book) {
     bookTitle.textContent = book.volumeInfo.title;
     bookAuthor.textContent = book.volumeInfo.authors;
     bookPublisher.textContent = book.volumeInfo.publisher;
@@ -43,14 +43,14 @@ function renderBook() {
 
 function getBooksFromAPI (e) {
     e.preventDefault();
-    const searchInputValue = searchInput.value.replace(' ', '+');
-    debugger;
+    const searchInputValue = searchInput.value.replace(' ', '+'); 
     //Fetch request to API to get data regarding random book
     fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}&${googleKey}`)
     .then(res => res.json())
     .then(book => {
-        // renderBook(book.items[0]);
+        renderBook(book.items[0]);
         console.log(book.items)
+        debugger;
     })
     .catch(error => alert(error))
 
