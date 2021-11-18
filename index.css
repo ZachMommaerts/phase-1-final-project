@@ -31,3 +31,7 @@ li {
     border-bottom: solid black 2px;
 }
 
+.hidden {
+    visibility: hidden;
+    display: none;
+}

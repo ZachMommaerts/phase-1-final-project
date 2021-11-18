@@ -6,9 +6,7 @@ const bookReviewForm = document.querySelector('#review-form');
 const bookReview = document.querySelector('#review');
 const bookContainer = document.querySelector('.book-details');
 const bookReviewList = document.querySelector("#book-review");
-const bookSubtitle = document.querySelector("#book-subtitle");
 const bookDescription = document.querySelector("#book-description");
-const bookCategories = document.querySelector("#book-categories");
 const searchForm = document.querySelector('#search-form');
 const searchInput = document.querySelector('#search');
 const bookListContainer = document.querySelector('#book-container')
@@ -21,9 +19,7 @@ function renderBook(book) {
     bookTitle.textContent = book.volumeInfo.title;
     bookAuthor.textContent = book.volumeInfo.authors;
     bookCover.src = book.volumeInfo.imageLinks.thumbnail;
-    bookSubtitle.textContent = book.volumeInfo.subtitle;
     bookDescription.textContent = book.volumeInfo.description;
-    bookCategories.textContent = book.volumeInfo.categories[0];
 
 }
 
@@ -48,31 +44,19 @@ function getBooksFromAPI (e) {
 searchForm.addEventListener('submit', e => getBooksFromAPI(e))
 
 function renderRelatedBook (book) {
-
     const bookListDiv = createEl('div');
     const bookListImage = createEl('img');
-    const bookListSubtitle = createEl("h3");
     const bookListTitle = createEl('h2');
     const bookListAuthor = createEl('h3');
     const bookListDescription = createEl('h3');
-    const bookListCategories = document.querySelector("h4");
 
     bookListDiv.className = 'book-list'
     bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
 
-    bookListCategories.textContent = book.volumeInfo.categories[0];
-    bookListCategories.style.visibility = 'hidden';
-    bookListCategories.style.display = 'none';
-
-    bookListSubtitle.textContent = book.volumeInfo.subtitle;
-    bookListSubtitle.style.visibility = 'hidden';
-    bookListSubtitle.style.display = 'none';
-
+    bookListDescription.className = 'hidden';
     bookListDescription.textContent = book.volumeInfo.description;
-    bookListDescription.style.visibility = 'hidden';
-    bookListDescription.style.display = 'none';
 
     bookListDiv.append(bookListImage, bookListTitle, bookListAuthor, bookListDescription);
     bookListContainer.append(bookListDiv);
@@ -89,9 +73,7 @@ function getBookDetails(e) {
         bookTitle.textContent = target.children[1].textContent;
         bookAuthor.textContent = target.children[2].textContent;
         bookCover.src = target.children[0].src;
-        // bookSubtitle.textContent = book.children[4].textContent;
-        // bookDescription.textContent = target.children[3].textContent;
-        // bookCategories.textContent = book.children[5].textContent;
+        bookDescription.textContent = target.children[3].textContent;
     }
 }
 //Event Listener for putting list book into details
