@@ -2,12 +2,8 @@
 const bookTitle = document.querySelector('#book-title');
 const bookCover = document.querySelector('#book-cover');
 const bookAuthor = document.querySelector('#book-author');
-const bookPublisher = document.querySelector('#book-publisher');
-const bookPublishingDate = document.querySelector('#book-publishing-date');
-const bookISBN = document.querySelector('#ISBN');
 const bookReviewForm = document.querySelector('#review-form');
 const bookReview = document.querySelector('#review');
-const likeButton = document.querySelector('#like-button');
 const bookContainer = document.querySelector('.book-details');
 const bookReviewList = document.querySelector("#book-review");
 const bookSubtitle = document.querySelector("#book-subtitle");
@@ -24,17 +20,6 @@ const googleKey = config.GoogleAPIKey;
 function renderBook(book) {
     bookTitle.textContent = book.volumeInfo.title;
     bookAuthor.textContent = book.volumeInfo.authors;
-    bookPublisher.textContent = book.volumeInfo.publisher;
-    bookPublishingDate.textContent = book.volumeInfo.publishedDate;
-    if(book.volumeInfo.industryIdentifiers){
-        if (book.volumeInfo.industryIdentifiers[0] === 'ISBN_13'){
-            bookISBN.textContent = book.volumeInfo.industryIdentifiers[0].identifier;
-        } else {
-            bookISBN.textContent = book.volumeInfo.industryIdentifiers[1].identifier;
-        }
-    } else {
-        bookISBN.innerHTML = '';
-    }
     bookCover.src = book.volumeInfo.imageLinks.thumbnail;
     bookSubtitle.textContent = book.volumeInfo.subtitle;
     bookDescription.textContent = book.volumeInfo.description;
@@ -85,21 +70,6 @@ function renderRelatedBook (book) {
         bookListDiv.remove();
     }
 }
-
-
-// <h1 id="book-title">Book title goes here</h1>
-// <img id="book-cover" alt="Book Cover Goes Here" src="">
-// <h2 id="book-subtitle"> subtitle goes here</h2>
-// <h3 id="book-author">Book author goes here</h3>
-// <h4 id="book-description">Book description goes here</h4>
-// <h5 id="book-categories">category/genre goes here</h5>
-// <p id="book-review-title">Leave a review</p>
-// <ul id="book-review">
-// </ul> 
-// <form id="review-form">
-//     <label for="review"></label>
-//     <textarea id="review"></textarea>
-//     <button type="submit">Add Your Review!</button>
 
 //Function that shows the details of a book in a special window
 function getBookDetails(e) {
