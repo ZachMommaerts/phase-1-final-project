@@ -51,14 +51,25 @@ function renderRelatedBook (book) {
 
     const bookListDiv = createEl('div');
     const bookListImage = createEl('img');
+    const bookListSubtitle = createEl("h3");
     const bookListTitle = createEl('h2');
     const bookListAuthor = createEl('h3');
     const bookListDescription = createEl('h3');
+    const bookListCategories = document.querySelector("h4");
 
     bookListDiv.className = 'book-list'
     bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
+
+    bookListCategories.textContent = book.volumeInfo.categories[0];
+    bookListCategories.style.visibility = 'hidden';
+    bookListCategories.style.display = 'none';
+
+    bookListSubtitle.textContent = book.volumeInfo.subtitle;
+    bookListSubtitle.style.visibility = 'hidden';
+    bookListSubtitle.style.display = 'none';
+
     bookListDescription.textContent = book.volumeInfo.description;
     bookListDescription.style.visibility = 'hidden';
     bookListDescription.style.display = 'none';
@@ -75,7 +86,12 @@ function renderRelatedBook (book) {
 function getBookDetails(e) {
     const target = e.target;
     if(target && target.className === 'book-list') {
-        
+        bookTitle.textContent = target.children[1].textContent;
+        bookAuthor.textContent = target.children[2].textContent;
+        bookCover.src = target.children[0].src;
+        // bookSubtitle.textContent = book.children[4].textContent;
+        // bookDescription.textContent = target.children[3].textContent;
+        // bookCategories.textContent = book.children[5].textContent;
     }
 }
 //Event Listener for putting list book into details
