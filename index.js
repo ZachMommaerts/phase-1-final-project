@@ -62,13 +62,13 @@ function getBooksFromAPI (e) {
 searchForm.addEventListener('submit', e => getBooksFromAPI(e))
 
 function renderRelatedBook (book) {
+
     const bookListDiv = createEl('div');
     const bookListImage = createEl('img');
     const bookListTitle = createEl('h2');
     const bookListAuthor = createEl('h3');
     const bookListDescription = createEl('h3');
 
-    bookListDiv.id = book.volumeInfo.industryIdentifiers[0];
     bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
@@ -76,7 +76,12 @@ function renderRelatedBook (book) {
     bookListDescription.style.visibility = 'hidden';
     bookListDescription.style.display = 'none';
 
-    bookListContainer.appendChild(bookListDiv);
+    bookListDiv.append(bookListImage, bookListTitle, bookListAuthor, bookListDescription);
+    bookListContainer.append(bookListDiv);
+
+    if(bookListTitle.textContent === bookTitle.textContent) {
+        bookListDiv.remove();
+    }
 }
 
 function createEl (tag) {
