@@ -116,9 +116,6 @@ function createEl (tag) {
     return document.createElement(tag);
 }
 
-likeButton.addEventListener("click", (e) =>{
-    e.classList.toggle(likeButton)
-})
 
 bookReviewForm.addEventListener("submit", (e) =>{
     e.preventDefault();
