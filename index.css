@@ -15,10 +15,11 @@ header {
     font-size: 3rem;
 }
 
-img {
+img#book-cover {
+    width: 250px;
     border-left: solid black 1px;
     border-right: solid black 1px;
-    border-top: solid black 1px;
+    border-top: solid black  1px;
     border-bottom: solid black 1px; 
 }
 
