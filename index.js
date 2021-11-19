@@ -92,18 +92,6 @@ function createEl (tag) {
 bookReviewForm.addEventListener("submit", (e) =>{
     e.preventDefault();
     let userBookReview = bookReview.value;
-    fetch("http://localhost:3000/comments",  {
-        method : "POST",
-        headers : {
-            "Content-Type" : "application/json"
-        },
-        body : JSON.stringify({
-            content : userBookReview,
-            title : bookTitle.textContent
-        })
-
-    })
-    
     let li = document.createElement("li");
     li.className = "input-review"
     li.textContent = userBookReview
