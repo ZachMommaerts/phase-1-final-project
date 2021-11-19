@@ -121,7 +121,7 @@ function fetchSavedReviews(){
         if (bookTitle = comments.title)
         let li = document.createElement("li");
         li.className = "input-review"
-        li.textContent = conmments.content
+        li.textContent = comments.content
         bookReviewList.appendChild(li)
     })
 }
