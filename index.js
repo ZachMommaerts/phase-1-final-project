@@ -55,18 +55,7 @@ function renderRelatedBook (book) {
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
 
-<<<<<<< HEAD
-    // bookListCategories.textContent = book.volumeInfo.categories[0];
-    // bookListCategories.style.visibility = 'hidden';
-    // bookListCategories.style.display = 'none';
-
-    bookListSubtitle.textContent = book.volumeInfo.subtitle;
-    bookListSubtitle.style.visibility = 'hidden';
-    bookListSubtitle.style.display = 'none';
-
-=======
     bookListDescription.className = 'hidden';
->>>>>>> refs/remotes/origin/main
     bookListDescription.textContent = book.volumeInfo.description;
 
     bookListDiv.append(bookListImage, bookListTitle, bookListAuthor, bookListDescription);
@@ -84,13 +73,7 @@ function getBookDetails(e) {
         bookTitle.textContent = target.children[1].textContent;
         bookAuthor.textContent = target.children[2].textContent;
         bookCover.src = target.children[0].src;
-<<<<<<< HEAD
-        bookSubtitle.textContent = book.children[4].textContent;
         bookDescription.textContent = target.children[3].textContent;
-        bookCategories.textContent = book.children[5].textContent;
-=======
-        bookDescription.textContent = target.children[3].textContent;
->>>>>>> refs/remotes/origin/main
     }
 }
 //Event Listener for putting list book into details
@@ -106,9 +89,29 @@ bookReviewForm.addEventListener("submit", (e) =>{
     
     e.preventDefault();
     let userBookReview = bookReview.value;
-    let li = document.createElement("li");
-    li.className = "input-review"
-    li.textContent = userBookReview
-    bookReviewList.appendChild(li)
+    
+    fetch("http://localhost:3000/comments", {
+        method : "POST" ,
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+            content : userBookReview,
+            title : bookTitle.textContent
+        })
+    })
+    .then(res => res.json())
+    .then(review => {
+        let li = document.createElement("li");
+    li.className = "input-review";
+    li.textContent = review.content;
+    bookReviewList.appendChild(li);
+    })
+   
     e.target.reset()
 })
+
+fetch("http://localhost:3000/comments")
+.then(response => response.json())
+.then(savedComments => postReviews(savedComments)
+
