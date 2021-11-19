@@ -58,6 +58,7 @@ function renderRelatedBook (book) {
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
 
+
     bookListDescription.className = 'hidden';
     bookListDescription.textContent = book.volumeInfo.description;
 
@@ -89,7 +90,6 @@ function createEl (tag) {
 
 
 bookReviewForm.addEventListener("submit", (e) =>{
-
     e.preventDefault();
     let userBookReview = bookReview.value;
     let li = document.createElement("li");
