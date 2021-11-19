@@ -101,8 +101,8 @@ bookReviewForm.addEventListener("submit", (e) =>{
             content : userBookReview,
             title : bookTitle.textContent
         })
-
-    })
+        
+    }).then(res=> res.json()).then(data=> console.log(data))
     
     let li = document.createElement("li");
     li.className = "input-review"
@@ -110,3 +110,9 @@ bookReviewForm.addEventListener("submit", (e) =>{
     bookReviewList.appendChild(li)
     e.target.reset()
 })
+
+
+// fetch("http://localhost:3000/comments") {
+    // if (bookTitle = comments.title)
+    // return comments.content 
+// }
