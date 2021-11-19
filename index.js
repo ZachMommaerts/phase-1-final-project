@@ -92,9 +92,36 @@ function createEl (tag) {
 bookReviewForm.addEventListener("submit", (e) =>{
     e.preventDefault();
     let userBookReview = bookReview.value;
+    fetch("http://localhost:3000/comments",  {
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+            content : userBookReview,
+            title : bookTitle.textContent
+        })
+        
+    }).then(res=> res.json()).then(data=> console.log(data))
+    
     let li = document.createElement("li");
     li.className = "input-review"
     li.textContent = userBookReview
     bookReviewList.appendChild(li)
     e.target.reset()
 })
+
+
+function fetchSavedReviews(){
+
+    fetch("http://localhost:3000/comments")
+    .then(response => response.json())
+    .then(comments =>  
+    {
+        if (bookTitle = comments.title)
+        let li = document.createElement("li");
+        li.className = "input-review"
+        li.textContent = conmments.content
+        bookReviewList.appendChild(li)
+    })
+}
