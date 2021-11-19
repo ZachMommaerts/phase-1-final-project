@@ -4,7 +4,7 @@ const bookCover = document.querySelector('#book-cover');
 const bookAuthor = document.querySelector('#book-author');
 const bookReviewForm = document.querySelector('#review-form');
 const bookReview = document.querySelector('#review');
-const bookContainer = document.querySelector('.book-details');
+const bookContainer = document.querySelector('#book-details');
 const bookReviewList = document.querySelector("#book-review");
 const bookDescription = document.querySelector("#book-description");
 const searchForm = document.querySelector('#search-form');
@@ -25,7 +25,7 @@ function renderBook(book) {
 
 function getBooksFromAPI (e) {
     e.preventDefault();
-    const searchInputValue = searchInput.value.replace(' ', '+'); 
+    const searchInputValue = searchInput.value.replace(' ', '+');
     //Fetch request to API to get data regarding searched book
     fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchInputValue}&${googleKey}`)
     .then(res => res.json())
@@ -36,6 +36,8 @@ function getBooksFromAPI (e) {
         console.log(books.items)
     })
     .catch(error => alert(error))
+
+    bookContainer.style.visibility = 'visible';
 
     e.target.reset();
 }
@@ -52,6 +54,7 @@ function renderRelatedBook (book) {
 
     bookListDiv.className = 'book-list'
     bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
+    bookListImage.className = 'list-images';
     bookListTitle.textContent = book.volumeInfo.title;
     bookListAuthor.textContent = book.volumeInfo.authors;
 
@@ -86,7 +89,6 @@ function createEl (tag) {
 
 
 bookReviewForm.addEventListener("submit", (e) =>{
-    
     e.preventDefault();
     let userBookReview = bookReview.value;
     
@@ -111,7 +113,11 @@ bookReviewForm.addEventListener("submit", (e) =>{
     e.target.reset()
 })
 
-fetch("http://localhost:3000/comments")
-.then(response => response.json())
-.then(savedComments => postReviews(savedComments)
+// fetch("http://localhost:3000/comments")
+// .then(response => response.json())
+// .then(savedReviews => postReviews(savedReviews)
+// function postReviews(reviews){
+// if (comments.title = bookTitle.textContent)
+    // return comments.content 
+// }
 
