@@ -31,6 +31,7 @@ function getBooksFromAPI (e) {
     .then(res => res.json())
     .then(books => {
         renderBook(books.items[0]);
+        fetchSavedReviews(books.items[0].volumeInfo.title)
         bookListContainer.innerHTML = '';
         books.items.forEach(renderRelatedBook);
         console.log(books.items)
@@ -78,6 +79,7 @@ function getBookDetails(e) {
         bookAuthor.textContent = target.children[2].textContent;
         bookCover.src = target.children[0].src;
         bookDescription.textContent = target.children[3].textContent;
+        fetchSavedReviews(target.children[1].textContent);
     }
 }
 //Event Listener for putting list book into details
@@ -116,12 +118,14 @@ function fetchSavedReviews(){
 
     fetch("http://localhost:3000/comments")
     .then(response => response.json())
-    .then(comments =>  
-    {
-        if (bookTitle = comments.title)
-        let li = document.createElement("li");
-        li.className = "input-review"
-        li.textContent = conmments.content
-        bookReviewList.appendChild(li)
+    .then(comments =>  {
+        comments.forEach(comment => {
+            if (bookTitle.textContent === comment.title) {
+                let li = document.createElement("li");
+                li.className = "input-review"
+                li.textContent = comment.content
+                bookReviewList.appendChild(li)
+        }
+        })
     })
 }
