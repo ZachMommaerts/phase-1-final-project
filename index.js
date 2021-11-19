@@ -31,6 +31,7 @@ function getBooksFromAPI (e) {
     .then(res => res.json())
     .then(books => {
         renderBook(books.items[0]);
+        fetchSavedReviews(books.items[0].volumeInfo.title)
         bookListContainer.innerHTML = '';
         books.items.forEach(renderRelatedBook);
         console.log(books.items)
@@ -77,6 +78,7 @@ function getBookDetails(e) {
         bookAuthor.textContent = target.children[2].textContent;
         bookCover.src = target.children[0].src;
         bookDescription.textContent = target.children[3].textContent;
+        fetchSavedReviews(target.children[1].textContent);
     }
 }
 //Event Listener for putting list book into details
@@ -91,9 +93,8 @@ function createEl (tag) {
 bookReviewForm.addEventListener("submit", (e) =>{
     e.preventDefault();
     let userBookReview = bookReview.value;
-    
-    fetch("http://localhost:3000/comments", {
-        method : "POST" ,
+    fetch("http://localhost:3000/comments",  {
+        method : "POST",
         headers : {
             "Content-Type" : "application/json"
         },
@@ -101,23 +102,29 @@ bookReviewForm.addEventListener("submit", (e) =>{
             content : userBookReview,
             title : bookTitle.textContent
         })
-    })
-    .then(res => res.json())
-    .then(review => {
-        let li = document.createElement("li");
-    li.className = "input-review";
-    li.textContent = review.content;
-    bookReviewList.appendChild(li);
-    })
-   
+        
+    }).then(res=> res.json()).then(data=> console.log(data))
+    
+    let li = document.createElement("li");
+    li.className = "input-review"
+    li.textContent = userBookReview
+    bookReviewList.appendChild(li)
     e.target.reset()
 })
 
-// fetch("http://localhost:3000/comments")
-// .then(response => response.json())
-// .then(savedReviews => postReviews(savedReviews)
-// function postReviews(reviews){
-// if (comments.title = bookTitle.textContent)
-    // return comments.content 
-// }
 
+function fetchSavedReviews(){
+
+    fetch("http://localhost:3000/comments")
+    .then(response => response.json())
+    .then(comments =>  {
+        comments.forEach(comment => {
+            if (bookTitle.textContent === comment.title) {
+                let li = document.createElement("li");
+                li.className = "input-review"
+                li.textContent = comment.content
+                bookReviewList.appendChild(li)
+        }
+        })
+    })
+}
