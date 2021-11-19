@@ -112,7 +112,16 @@ bookReviewForm.addEventListener("submit", (e) =>{
 })
 
 
-// fetch("http://localhost:3000/comments") {
-    // if (bookTitle = comments.title)
-    // return comments.content 
-// }
+function fetchSavedReviews(){
+
+    fetch("http://localhost:3000/comments")
+    .then(response => response.json())
+    .then(comments =>  
+    {
+        if (bookTitle = comments.title)
+        let li = document.createElement("li");
+        li.className = "input-review"
+        li.textContent = conmments.content
+        bookReviewList.appendChild(li)
+    })
+}

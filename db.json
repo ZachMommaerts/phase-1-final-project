@@ -1,64 +1,9 @@
 {
   "comments": [
     {
-      "content": "good book",
+      "content": "Good Book",
       "title": "Inherent Vice",
       "id": 1
-    },
-    {
-      "content": "good book",
-      "title": "Inherent Vice",
-      "id": 2
-    },
-    {
-      "content": "hello",
-      "title": "",
-      "id": 3
-    },
-    {
-      "content": "love coloring",
-      "title": "Harry Potter Coloring Book",
-      "id": 4
-    },
-    {
-      "content": "good book\n",
-      "title": "The Fellowship of the Ring",
-      "id": 5
-    },
-    {
-      "content": "asf",
-      "title": "Web Technologies and Applications",
-      "id": 6
-    },
-    {
-      "content": "asdf",
-      "title": "Dualis Method of Touch Typewriting",
-      "id": 7
-    },
-    {
-      "content": "great coloring fun",
-      "title": "Harry Potter Coloring Book",
-      "id": 8
-    },
-    {
-      "content": "moad dib",
-      "title": "Dune",
-      "id": 9
-    },
-    {
-      "content": "afsad",
-      "title": "Dune",
-      "id": 10
-    },
-    {
-      "content": "adsf",
-      "title": "Dune",
-      "id": 11
-    },
-    {
-      "content": "dasf",
-      "title": "Dune",
-      "id": 12
     }
   ]
 }
