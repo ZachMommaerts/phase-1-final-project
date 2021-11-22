@@ -1,12 +1,16 @@
 body {
+    font-family: 'Armata';
     background-color: white;
 }
 header {
-    color:#E8DAB2;
-    font-size: 3rem;
+    color:#175676;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 5rem;
 }
 
 #search-form {
+    justify-content: center;
     margin: 2rem;
     display:  flex;
 }
@@ -15,6 +19,19 @@ header {
     margin-right: 1rem;
     resize: none;
     width: 40rem;
+}
+
+#review-form {
+    display: flex;
+    justify-content: right;
+    margin-right: 3rem;
+    visibility: hidden;
+}
+#review {
+    border-radius: .5rem;
+    margin-right: 1rem;
+    resize: none;
+    width: 10rem;
 }
 
 #book-details {
@@ -32,25 +49,40 @@ header {
     margin-right: auto;
 }
 
+h3 {
+    font-size: 1rem;
+}
 #main-info {
+    margin-right: 1rem;;
+    color: white;
     display: grid;
     width: 20rem;
     text-align: center;
 }
 
 #book-description {
+    color: white;
     padding-right: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-li {
+.button {
+    padding: .5rem;
+    background-color: #DD6E42;
+    text-decoration: none;
+    border: none;
+    color: rgb(223, 215, 215);
+    border-radius: .5rem;
+}
 
-    border-top: solid black 2px;
-    border-left: solid black 2px ;
-    border-right: solid black 2px;
-    border-bottom: solid black 2px;
+li {
+    border: .2rem solid #175676;
+    border-radius: .25rem;
+    margin-right: 2.5rem;
+    list-style-type: none;
+    padding: .5rem
 }
 
 .hidden {
@@ -67,19 +99,14 @@ li {
 }
 
 .book-list {
-    padding-top: 1rem;
-    display: grid;
+    padding: 1rem;
     text-align: center;
-    border: .1rem solid black;
+    border: .2rem solid #DD6E42;;
     border-radius: 1rem;
-    border-color: #DD6E42;
+    box-shadow: 5px 5px rgb(179, 178, 178);
 }
 
 .list-images {
     margin-left: auto;
     margin-right: auto;
-}
-
-button {
-    border-radius: .5rem;
 }

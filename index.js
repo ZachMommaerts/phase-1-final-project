@@ -20,7 +20,7 @@ function renderBook(book) {
     bookAuthor.textContent = book.volumeInfo.authors;
     bookCover.src = book.volumeInfo.imageLinks.thumbnail;
     bookDescription.textContent = book.volumeInfo.description;
-
+    bookReviewForm.style.visibility = 'visible'
 }
 
 function getBooksFromAPI (e) {
@@ -51,7 +51,7 @@ function renderRelatedBook (book) {
     const bookListImage = createEl('img');
     const bookListTitle = createEl('h2');
     const bookListAuthor = createEl('h3');
-    const bookListDescription = createEl('h3');
+    const bookListDescription = createEl('p');
 
     bookListDiv.className = 'book-list'
     bookListImage.src = book.volumeInfo.imageLinks.thumbnail;
